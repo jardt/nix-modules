@@ -83,6 +83,10 @@ stdenvNoCC.mkDerivation {
 
     ln -s ../libexec/codex-code-mode-host $out/bin/codex-code-mode-host
 
+    # Inherited from sadjow/codex-cli-nix: a stable executable path is intended
+    # to avoid macOS permission resets when Nix store paths change. This package
+    # does not create ~/.local/bin/codex; consumers must provide that symlink or
+    # set CODEX_EXECUTABLE_PATH to their own stable launcher path.
     makeWrapper $out/libexec/codex $out/bin/codex \
       --set DISABLE_AUTOUPDATER 1 \
       --run 'export CODEX_EXECUTABLE_PATH="''${CODEX_EXECUTABLE_PATH:-$HOME/.local/bin/codex}"' \

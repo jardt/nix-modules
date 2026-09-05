@@ -67,6 +67,7 @@ NixOS modules are exported under `nixosModules` and `modules.nixos`:
 
 - `base-packages`
 - `bluetooth`
+- `disk-monitor`
 - `fonts`
 - `home-assistant`
 - `kanata`
@@ -82,6 +83,7 @@ NixOS modules are exported under `nixosModules` and `modules.nixos`:
 Packages are exported under `packages.${system}`:
 
 - `cclip` (Linux only)
+- `chdman`
 - `codex`
 - `firecrawl-cli`
 - `gondolin`
@@ -154,6 +156,11 @@ Optional subfeatures remain opt-in. Collection and support modules without one
 primary behavior also expose explicit capability switches. Catsvim is a special
 case: importing it does not choose `catsvim` or `catsvi`, because the consumer
 must provide a wrapped-Neovim source and select the desired profile.
+
+Disk monitoring is also opt-in. Import `nixosModules.disk-monitor`, set
+`modules.nixos.disk-monitor.enable = true`, and supply
+`modules.nixos.disk-monitor.ntfyUrl` with your notification topic URL.
+There is no default URL to avoid sending alerts to an unrelated endpoint.
 
 Importing `flakeModules.default` only registers the public module collections and
 packages in a flake-parts consumer; it does not activate every Home Manager or
