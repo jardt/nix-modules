@@ -7,6 +7,6 @@
     }:
     {
       imports = [ ./media/home.nix ];
-      modules.home.media.enable = lib.mkDefault pkgs.stdenv.isLinux;
+      modules.home.media.enable = lib.mkDefault pkgs.stdenv.hostPlatform.isLinux;
     };
 }

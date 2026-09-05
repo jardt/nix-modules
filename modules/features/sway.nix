@@ -7,6 +7,6 @@
     }:
     {
       imports = [ ./sway/home.nix ];
-      modules.home.sway.enable = lib.mkDefault pkgs.stdenv.isLinux;
+      modules.home.sway.enable = lib.mkDefault pkgs.stdenv.hostPlatform.isLinux;
     };
 }

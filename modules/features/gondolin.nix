@@ -12,7 +12,7 @@
       modules.home.gondolin = {
         enable = lib.mkDefault true;
         package = lib.mkDefault config.packages.gondolin;
-        binaryCache.enable = lib.mkDefault pkgs.stdenv.isLinux;
+        binaryCache.enable = lib.mkDefault pkgs.stdenv.hostPlatform.isLinux;
       };
     }
   );

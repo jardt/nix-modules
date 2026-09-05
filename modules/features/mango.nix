@@ -33,7 +33,7 @@ let
         ];
 
         config = lib.mkMerge [
-          (lib.setAttrByPath (optionPath ++ [ "enable" ]) (lib.mkDefault pkgs.stdenv.isLinux))
+          (lib.setAttrByPath (optionPath ++ [ "enable" ]) (lib.mkDefault pkgs.stdenv.hostPlatform.isLinux))
           (lib.mkIf cfg.enable (
             lib.setAttrByPath (optionPath ++ [ "package" ]) (lib.mkDefault perSystemConfig.packages.mango)
           ))
@@ -72,7 +72,7 @@ in
       ...
     }:
     {
-      packages = lib.optionalAttrs pkgs.stdenv.isLinux {
+      packages = lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
         mango =
           (pkgs.callPackage "${moduleFlake.inputs.mango}/nix" {
             scenefx = moduleFlake.inputs.mango.inputs.scenefx.packages.${system}.default;

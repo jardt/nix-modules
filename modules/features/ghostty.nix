@@ -7,6 +7,6 @@
     }:
     {
       imports = [ ./ghostty/home.nix ];
-      modules.home.ghostty.enable = lib.mkDefault pkgs.stdenv.isLinux;
+      modules.home.ghostty.enable = lib.mkDefault pkgs.stdenv.hostPlatform.isLinux;
     };
 }

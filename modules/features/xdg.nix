@@ -7,6 +7,6 @@
     }:
     {
       imports = [ ./xdg/home.nix ];
-      modules.home.xdg.enable = lib.mkDefault pkgs.stdenv.isLinux;
+      modules.home.xdg.enable = lib.mkDefault pkgs.stdenv.hostPlatform.isLinux;
     };
 }

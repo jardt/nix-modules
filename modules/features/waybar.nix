@@ -7,6 +7,6 @@
     }:
     {
       imports = [ ./waybar/home.nix ];
-      modules.home.waybar.enable = lib.mkDefault pkgs.stdenv.isLinux;
+      modules.home.waybar.enable = lib.mkDefault pkgs.stdenv.hostPlatform.isLinux;
     };
 }

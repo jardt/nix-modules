@@ -140,7 +140,8 @@
 
                   home = {
                     username = "module-test";
-                    homeDirectory = if pkgs.stdenv.isDarwin then "/Users/module-test" else "/home/module-test";
+                    homeDirectory =
+                      if pkgs.stdenv.hostPlatform.isDarwin then "/Users/module-test" else "/home/module-test";
                     stateVersion = "26.05";
                   };
                 }
@@ -178,7 +179,7 @@
         lib.mapAttrs' (
           name: modules: lib.nameValuePair "home-${name}" (mkHomeCheck name modules)
         ) checkedHomeCompositions
-        // lib.optionalAttrs pkgs.stdenv.isLinux (
+        // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux (
           lib.mapAttrs' (
             name: modules: lib.nameValuePair "nixos-${name}" (mkNixosCheck name modules)
           ) checkedNixosCompositions

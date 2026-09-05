@@ -33,7 +33,7 @@ let
       patchelf
       radare2
     ]
-    ++ optionals pkgs.stdenv.isLinux (
+    ++ optionals pkgs.stdenv.hostPlatform.isLinux (
       with pkgs;
       [
         ltrace

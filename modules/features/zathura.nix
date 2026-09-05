@@ -7,6 +7,6 @@
     }:
     {
       imports = [ ./zathura/home.nix ];
-      modules.home.zathura.enable = lib.mkDefault pkgs.stdenv.isLinux;
+      modules.home.zathura.enable = lib.mkDefault pkgs.stdenv.hostPlatform.isLinux;
     };
 }

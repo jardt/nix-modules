@@ -7,8 +7,8 @@
 with lib;
 let
   cfg = config.modules.home.devops;
-  enableLimaOnMacOS = cfg.enableLima && pkgs.stdenv.isDarwin;
-  enableColimaOnMacOS = cfg.enableColima && pkgs.stdenv.isDarwin;
+  enableLimaOnMacOS = cfg.enableLima && pkgs.stdenv.hostPlatform.isDarwin;
+  enableColimaOnMacOS = cfg.enableColima && pkgs.stdenv.hostPlatform.isDarwin;
 in
 {
 
@@ -32,7 +32,7 @@ in
           [
             docker
           ]
-          ++ lib.optionals pkgs.stdenv.isLinux [ podman ]
+          ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [ podman ]
         else
           [ ]
       )

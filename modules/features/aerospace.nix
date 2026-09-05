@@ -7,6 +7,6 @@
     }:
     {
       imports = [ ./aerospace/home.nix ];
-      modules.home.aerospace.enable = lib.mkDefault pkgs.stdenv.isDarwin;
+      modules.home.aerospace.enable = lib.mkDefault pkgs.stdenv.hostPlatform.isDarwin;
     };
 }

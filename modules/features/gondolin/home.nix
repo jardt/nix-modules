@@ -110,8 +110,8 @@ in
 
     enableQemu = mkOption {
       type = types.bool;
-      default = pkgs.stdenv.isLinux;
-      defaultText = literalExpression "pkgs.stdenv.isLinux";
+      default = pkgs.stdenv.hostPlatform.isLinux;
+      defaultText = literalExpression "pkgs.stdenv.hostPlatform.isLinux";
       example = false;
       description = "Install QEMU alongside Gondolin for the default qemu backend on Linux.";
     };
@@ -185,7 +185,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    warnings = optional pkgs.stdenv.isDarwin ''
+    warnings = optional pkgs.stdenv.hostPlatform.isDarwin ''
       modules.home.gondolin: QEMU is not installed by this Home Manager module on macOS.
       Install it separately, for example with Homebrew (`brew install qemu`) or a nix-darwin Homebrew module.
     '';
@@ -193,7 +193,7 @@ in
     home.packages = [
       cfg.package
     ]
-    ++ optional (cfg.enableQemu && pkgs.stdenv.isLinux) pkgs.qemu
+    ++ optional (cfg.enableQemu && pkgs.stdenv.hostPlatform.isLinux) pkgs.qemu
     ++ optionals cfg.nixImage.enable [
       gondolinNixBuildImage
       gondolinNixDevelop

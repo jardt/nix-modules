@@ -7,6 +7,6 @@
     }:
     {
       imports = [ ./hyprland/home.nix ];
-      modules.home.hypr.enable = lib.mkDefault pkgs.stdenv.isLinux;
+      modules.home.hypr.enable = lib.mkDefault pkgs.stdenv.hostPlatform.isLinux;
     };
 }

@@ -7,6 +7,6 @@
     }:
     {
       imports = [ ./i3/home.nix ];
-      modules.home.i3.enable = lib.mkDefault pkgs.stdenv.isLinux;
+      modules.home.i3.enable = lib.mkDefault pkgs.stdenv.hostPlatform.isLinux;
     };
 }
