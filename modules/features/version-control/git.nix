@@ -103,8 +103,11 @@ in
           border = "rounded";
         };
         git = {
-          pagers = [
-            { externalDiffCommand = "${pkgs.difftastic}/bin/difft --color=always --display=inline"; }
+          diffRenderers = [
+            {
+              type = "extDiff";
+              command = "${pkgs.difftastic}/bin/difft --color=always --display=inline";
+            }
           ];
         };
       };
