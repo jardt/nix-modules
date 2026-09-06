@@ -7,9 +7,7 @@
 with lib;
 let
   cfg = config.modules.home.zsh;
-  catsvimEnabled = attrByPath [ "modules" "home" "catsvim" "enable" ] false config;
   televisionEnabled = attrByPath [ "modules" "home" "television" "enable" ] false config;
-  editor = if catsvimEnabled then "catsvim" else "nvim";
   lsWithColor = if pkgs.stdenv.hostPlatform.isDarwin then "ls -G" else "ls --color";
 in
 {
@@ -124,9 +122,6 @@ in
           ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
           ZSH_AUTOSUGGEST_USE_ASYNC=1
 
-          export VISUAL="${editor}"
-          export EDITOR="${editor}"
-
           ${lib.optionalString televisionEnabled ''
             eval "$(tv init zsh)"
           ''}
@@ -160,9 +155,14 @@ in
 
     programs.bash.enable = true;
 
+    home.sessionVariables = {
+      EDITOR = mkDefault "nvim";
+      VISUAL = mkDefault "nvim";
+    };
+
     home.shellAliases = {
       ls = lsWithColor;
-      f = ''${editor} $(fzf --preview="bat --color=always {}")'';
+      f = ''$EDITOR $(fzf --preview="bat --color=always {}")'';
     };
   };
 }

@@ -20,7 +20,6 @@ Home Manager modules are exported under `homeModules` and
 - `bitwarden`
 - `btop`
 - `bun`
-- `catsvim`
 - `cli-tools`
 - `default`
 - `devops`
@@ -153,9 +152,8 @@ the module's `lib.mkDefault` activation:
 ```
 
 Optional subfeatures remain opt-in. Collection and support modules without one
-primary behavior also expose explicit capability switches. Catsvim is a special
-case: importing it does not choose `catsvim` or `catsvi`, because the consumer
-must provide a wrapped-Neovim source and select the desired profile.
+primary behavior also expose explicit capability switches. Wrapped Neovim is
+consumed directly from its own flake rather than through this repository.
 
 Disk monitoring is also opt-in. Import `nixosModules.disk-monitor`, set
 `modules.nixos.disk-monitor.enable = true`, and supply

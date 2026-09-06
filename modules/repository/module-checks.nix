@@ -18,7 +18,6 @@
           "bat"
           "btop"
           "bun"
-          "catsvim"
           "cli-tools"
           "default"
           "devops"
